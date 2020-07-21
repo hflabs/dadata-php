@@ -1019,7 +1019,7 @@ This library uses [CalVer](https://calver.org/) with YY.MM.MICRO schema. See cha
 
 <!-- Markdown link & img dfn's -->
 
-[packagist-url]: https://packagist.org/packages/hflabs/dadata-php
+[packagist-url]: https://packagist.org/packages/hflabs/dadata
 [packagist-image]: https://poser.pugx.org/hflabs/dadata/v/stable.svg
 [downloads-image]: https://poser.pugx.org/hflabs/dadata/downloads.svg
 [license-image]: https://poser.pugx.org/hflabs/dadata/license.svg

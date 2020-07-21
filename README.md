@@ -2,6 +2,10 @@
 
 > Data cleansing, enrichment and suggestions via [Dadata API](https://dadata.ru/api)
 
+[![Latest Stable Version][packagist-image]][packagist-url]
+[![Total Downloads][downloads-image]][packagist-url]
+[![License][license-image]][packagist-url]
+
 Thin PHP wrapper over Dadata API.
 
 ## Installation
@@ -1012,3 +1016,10 @@ This library uses [CalVer](https://calver.org/) with YY.MM.MICRO schema. See cha
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+<!-- Markdown link & img dfn's -->
+
+[packagist-url]: https://packagist.org/packages/hflabs/dadata-php
+[packagist-image]: https://poser.pugx.org/hflabs/dadata/v/stable.svg
+[downloads-image]: https://poser.pugx.org/hflabs/dadata/downloads.svg
+[license-image]: https://poser.pugx.org/hflabs/dadata/license.svg

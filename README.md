@@ -174,6 +174,7 @@ array(5) {
 ```
 
 ```php
+// show suggestions in English
 > $response = $dadata->suggest("address", "samara metal", 5, ["language" => "en"]);
 > var_dump($response);
 array(5) {
@@ -200,6 +201,7 @@ array(5) {
 ```
 
 ```php
+// constrain by Yuzhno-Sakhalinsk city
 > $locations = [[ "kladr_id" => "6500000100000" ]];
 > $response = $dadata->suggest("address", "Ватутина", 5, ["locations" => $locations]);
 > var_dump($response);
@@ -214,6 +216,7 @@ array(1) {
 ```
 
 ```php
+// constrain by specific geo point and radius in Vologda city
 > $geo = [[ "lat" => 59.244634,  "lon" => 39.913355, "radius_meters" => 200 ]];
 > $response = $dadata->suggest("address", "сухонская", 5, ["locations_geo" => $geo]);
 > var_dump($response);
@@ -228,6 +231,7 @@ array(1) {
 ```
 
 ```php
+// boost Toliatti city to top
 > $boost = [[ "kladr_id" => "6300000700000" ]];
 > $response = $dadata->suggest("address", "авто", 5, ["locations_boost" => $boost]);
 > var_dump($response);
@@ -270,6 +274,7 @@ array(1) {
 ```
 
 ```php
+// find by KLADR ID
 > $response = $dadata->findById("address", "77000000000268400");
 ```
 
@@ -431,6 +436,7 @@ array(5) {
 ```
 
 ```php
+// find by INN and KPP
 > $response = $dadata->findById("party", "7707083893", 1, ["kpp" => "540602001"]);
 > var_dump($response);
 array(1) {
@@ -480,6 +486,29 @@ array(5) {
 }
 ```
 
+```php
+// constrain by Saint Petersburg and Leningradskaya oblast
+> $locations = [[ "kladr_id" => "7800000000000" ], [ "kladr_id" => "4700000000000"]];
+> $response = $dadata->suggest("party", "сбер", 5, ["locations" => $locations]);
+```
+
+```php
+// constrain by active companies
+> $status = [ "ACTIVE" ];
+> $response = $dadata->suggest("party", "сбер", 5, ["status" => $status]);
+```
+
+```php
+// constrain by individual entrepreneurs
+> $response = $dadata->suggest("party", "сбер", 5, ["type" => "INDIVIDUAL"]);
+```
+
+```php
+// constrain by head companies, no branches
+> $branch_type = [ "MAIN" ];
+> $response = $dadata->suggest("party", "сбер", 5, ["branch_type" => $branch_type]);
+```
+
 [Find affiliated companies](https://dadata.ru/api/find-affiliated/):
 
 ```php
@@ -509,6 +538,7 @@ array(5) {
 ```
 
 ```php
+// find only by manager INN
 > $response = $dadata->findAffiliated("773006366201", 5, ["scope" => "MANAGERS"]);
 > var_dump($response);
 array(3) {
@@ -562,9 +592,16 @@ array(1) {
 ```
 
 ```php
+// find by SWIFT
 > $response = $dadata->findById("bank", "SABRRUMM");
+
+// by INN
 > $response = $dadata->findById("bank", "7728168971");
+
+// by INN and KPP
 > $response = $dadata->findById("bank", "7728168971", 1, ["kpp" => "667102002"]);
+
+// by registration number
 > $response = $dadata->findById("bank", "1481");
 ```
 
@@ -650,6 +687,7 @@ array(5) {
 ```
 
 ```php
+// suggest female first name
 > $filter = ["parts" => ["NAME"], gender => "FEMALE"];
 > $response = $dadata->suggest("fio", "викт", 5, $filter);
 > var_dump($response);

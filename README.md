@@ -31,9 +31,9 @@ Create API client instance:
 
 Then call API methods as specified below.
 
-### Postal Address
+## Postal Address
 
-[Validate and cleanse address](https://dadata.ru/api/clean/address/):
+### [Validate and cleanse address](https://dadata.ru/api/clean/address/)
 
 ```php
 > $response = $dadata->clean("address", "мск сухонская 11 89");
@@ -80,7 +80,9 @@ array(80) {
 }
 ```
 
-[Geocode address](https://dadata.ru/api/geocode/) (same API method as cleanse):
+### [Geocode address](https://dadata.ru/api/geocode/)
+
+Same API method as "validate and cleanse":
 
 ```php
 > $response = $dadata->clean("address", "мск сухонская 11 89");
@@ -105,7 +107,7 @@ array(80) {
 }
 ```
 
-[Reverse geocode address](https://dadata.ru/api/geolocate/):
+### [Reverse geocode address](https://dadata.ru/api/geolocate/)
 
 ```php
 > $response = $dadata->geolocate("address", 55.878, 37.653);
@@ -133,7 +135,7 @@ array(4) {
 }
 ```
 
-[GeoIP city](https://dadata.ru/api/iplocate/):
+### [GeoIP city](https://dadata.ru/api/iplocate/)
 
 ```php
 > $response = $dadata->iplocate("46.226.227.20");
@@ -150,7 +152,7 @@ array(3) {
 }
 ```
 
-[Autocomplete (suggest) address](https://dadata.ru/api/suggest/address/):
+### [Autocomplete (suggest) address](https://dadata.ru/api/suggest/address/)
 
 ```php
 > $response = $dadata->suggest("address", "самара метал");
@@ -178,8 +180,9 @@ array(5) {
 }
 ```
 
+Show suggestions in English:
+
 ```php
-// show suggestions in English
 > $response = $dadata->suggest("address", "samara metal", 5, ["language" => "en"]);
 > var_dump($response);
 array(5) {
@@ -205,8 +208,9 @@ array(5) {
 }
 ```
 
+Constrain by city (Yuzhno-Sakhalinsk):
+
 ```php
-// constrain by Yuzhno-Sakhalinsk city
 > $locations = [[ "kladr_id" => "6500000100000" ]];
 > $response = $dadata->suggest("address", "Ватутина", 5, ["locations" => $locations]);
 > var_dump($response);
@@ -220,8 +224,9 @@ array(1) {
 }
 ```
 
+Constrain by specific geo point and radius (in Vologda city):
+
 ```php
-// constrain by specific geo point and radius in Vologda city
 > $geo = [[ "lat" => 59.244634,  "lon" => 39.913355, "radius_meters" => 200 ]];
 > $response = $dadata->suggest("address", "сухонская", 5, ["locations_geo" => $geo]);
 > var_dump($response);
@@ -235,8 +240,9 @@ array(1) {
 }
 ```
 
+Boost city to top (Toliatti):
+
 ```php
-// boost Toliatti city to top
 > $boost = [[ "kladr_id" => "6300000700000" ]];
 > $response = $dadata->suggest("address", "авто", 5, ["locations_boost" => $boost]);
 > var_dump($response);
@@ -263,7 +269,7 @@ array(5) {
 }
 ```
 
-[Find address by FIAS ID](https://dadata.ru/api/find-address/):
+### [Find address by FIAS ID](https://dadata.ru/api/find-address/)
 
 ```php
 > $response = $dadata->findById("address", "9120b43f-2fae-4838-a144-85e43c2bfb29");
@@ -278,12 +284,13 @@ array(1) {
 }
 ```
 
+Find by KLADR ID:
+
 ```php
-// find by KLADR ID
 > $response = $dadata->findById("address", "77000000000268400");
 ```
 
-[Suggest postal office](https://dadata.ru/api/suggest/postal_unit/):
+### [Suggest postal office](https://dadata.ru/api/suggest/postal_unit/)
 
 ```php
 > $response = $dadata->suggest("postal_unit", "дежнева 2а");
@@ -303,7 +310,7 @@ array(1) {
 }
 ```
 
-[Find postal office by code](https://dadata.ru/api/suggest/postal_unit/):
+### [Find postal office by code](https://dadata.ru/api/suggest/postal_unit/)
 
 ```php
 > $response = $dadata->findById("postal_unit", "127642");
@@ -323,7 +330,7 @@ array(1) {
 }
 ```
 
-[Find nearest postal office](https://dadata.ru/api/suggest/postal_unit/):
+### [Find nearest postal office](https://dadata.ru/api/suggest/postal_unit/)
 
 ```php
 > $response = $dadata->geolocate("postal_unit", 55.878, 37.653, 1000);
@@ -344,7 +351,7 @@ array(2) {
 }
 ```
 
-[Get City ID for delivery services](https://dadata.ru/api/delivery/):
+### [Get City ID for delivery services](https://dadata.ru/api/delivery/)
 
 ```php
 > $response = $dadata->findById("delivery", "3100400100000");
@@ -370,7 +377,7 @@ array(1) {
 }
 ```
 
-[Get address strictly according to FIAS](https://dadata.ru/api/find-fias/):
+### [Get address strictly according to FIAS](https://dadata.ru/api/find-fias/)
 
 ```php
 > $response = $dadata->findById("fias", "9120b43f-2fae-4838-a144-85e43c2bfb29");
@@ -385,7 +392,7 @@ array(1) {
 }
 ```
 
-[Suggest country](https://dadata.ru/api/suggest/country/):
+### [Suggest country](https://dadata.ru/api/suggest/country/)
 
 ```php
 > $response = $dadata->suggest("country", "та");
@@ -413,9 +420,9 @@ array(4) {
 }
 ```
 
-### Company or individual enterpreneur
+## Company or individual enterpreneur
 
-[Find company by INN](https://dadata.ru/api/find-party/):
+### [Find company by INN](https://dadata.ru/api/find-party/)
 
 ```php
 > $response = $dadata->findById("party", "7707083893");
@@ -440,8 +447,9 @@ array(5) {
 }
 ```
 
+Find by INN and KPP:
+
 ```php
-// find by INN and KPP
 > $response = $dadata->findById("party", "7707083893", 1, ["kpp" => "540602001"]);
 > var_dump($response);
 array(1) {
@@ -463,7 +471,7 @@ array(1) {
 }
 ```
 
-[Suggest company](https://dadata.ru/api/suggest/party/):
+### [Suggest company](https://dadata.ru/api/suggest/party/)
 
 ```php
 > $response = $dadata->suggest("party", "сбер");
@@ -491,30 +499,34 @@ array(5) {
 }
 ```
 
+Constrain by specific regions (Saint Petersburg and Leningradskaya oblast):
+
 ```php
-// constrain by Saint Petersburg and Leningradskaya oblast
 > $locations = [[ "kladr_id" => "7800000000000" ], [ "kladr_id" => "4700000000000"]];
 > $response = $dadata->suggest("party", "сбер", 5, ["locations" => $locations]);
 ```
 
+Constrain by active companies:
+
 ```php
-// constrain by active companies
 > $status = [ "ACTIVE" ];
 > $response = $dadata->suggest("party", "сбер", 5, ["status" => $status]);
 ```
 
+Constrain by individual entrepreneurs:
+
 ```php
-// constrain by individual entrepreneurs
 > $response = $dadata->suggest("party", "сбер", 5, ["type" => "INDIVIDUAL"]);
 ```
 
+Constrain by head companies, no branches:
+
 ```php
-// constrain by head companies, no branches
 > $branch_type = [ "MAIN" ];
 > $response = $dadata->suggest("party", "сбер", 5, ["branch_type" => $branch_type]);
 ```
 
-[Find affiliated companies](https://dadata.ru/api/find-affiliated/):
+### [Find affiliated companies](https://dadata.ru/api/find-affiliated/)
 
 ```php
 > $response = $dadata->findAffiliated("7736207543");
@@ -542,8 +554,9 @@ array(5) {
 }
 ```
 
+Search only by manager INN:
+
 ```php
-// find only by manager INN
 > $response = $dadata->findAffiliated("773006366201", 5, ["scope" => "MANAGERS"]);
 > var_dump($response);
 array(3) {
@@ -568,9 +581,9 @@ array(3) {
 }
 ```
 
-### Bank
+## Bank
 
-[Find bank by BIC, SWIFT or INN](https://dadata.ru/api/find-bank/):
+### [Find bank by BIC, SWIFT or INN](https://dadata.ru/api/find-bank/)
 
 ```php
 > $response = $dadata->findById("bank", "044525225");
@@ -596,21 +609,31 @@ array(1) {
 }
 ```
 
+Find by SWIFT code:
+
 ```php
-// find by SWIFT
 > $response = $dadata->findById("bank", "SABRRUMM");
+```
 
-// by INN
+Find by INN:
+
+```php
 > $response = $dadata->findById("bank", "7728168971");
+```
 
-// by INN and KPP
+Find by INN and KPP:
+
+```php
 > $response = $dadata->findById("bank", "7728168971", 1, ["kpp" => "667102002"]);
+```
 
-// by registration number
+Find by registration number:
+
+```php
 > $response = $dadata->findById("bank", "1481");
 ```
 
-[Suggest bank](https://dadata.ru/api/suggest/bank/):
+### [Suggest bank](https://dadata.ru/api/suggest/bank/)
 
 ```php
 > $response = $dadata->suggest("bank", "ти");
@@ -638,9 +661,9 @@ array(5) {
 }
 ```
 
-### Personal name
+## Personal name
 
-[Validate and cleanse name](https://dadata.ru/api/clean/name/):
+### [Validate and cleanse name](https://dadata.ru/api/clean/name/)
 
 ```php
 > $response = $dadata->clean("name", "Срегей владимерович иванов");
@@ -663,7 +686,7 @@ array(10) {
 }
 ```
 
-[Suggest name](https://dadata.ru/api/suggest/name/):
+### [Suggest name](https://dadata.ru/api/suggest/name/)
 
 ```php
 > $response = $dadata->suggest("fio", "викт");
@@ -691,8 +714,9 @@ array(5) {
 }
 ```
 
+Suggest female first name:
+
 ```php
-// suggest female first name
 > $filter = ["parts" => ["NAME"], gender => "FEMALE"];
 > $response = $dadata->suggest("fio", "викт", 5, $filter);
 > var_dump($response);
@@ -713,9 +737,9 @@ array(2) {
 
 ```
 
-### Phone
+## Phone
 
-[Validate and cleanse phone](https://dadata.ru/api/clean/phone/):
+### [Validate and cleanse phone](https://dadata.ru/api/clean/phone/)
 
 ```php
 > $response = $dadata->clean("phone", "9168-233-454");
@@ -741,9 +765,9 @@ array(14) {
 }
 ```
 
-### Passport
+## Passport
 
-[Validate passport](https://dadata.ru/api/clean/passport/):
+### [Validate passport](https://dadata.ru/api/clean/passport/)
 
 ```php
 > $response = $dadata->clean("passport", "4509 235857");
@@ -760,7 +784,7 @@ array(4) {
 }
 ```
 
-[Suggest issued by](https://dadata.ru/api/suggest/fms_unit/):
+### [Suggest issued by](https://dadata.ru/api/suggest/fms_unit/)
 
 ```php
 > $response = $dadata->suggest("fms_unit", "772 053");
@@ -788,9 +812,9 @@ array(5) {
 }
 ```
 
-### Email
+## Email
 
-[Validate email](https://dadata.ru/api/clean/email/):
+### [Validate email](https://dadata.ru/api/clean/email/)
 
 ```php
 > $response = $dadata->clean("email", "serega@yandex/ru");
@@ -811,7 +835,7 @@ array(6) {
 }
 ```
 
-[Suggest email](https://dadata.ru/api/suggest/email/):
+### [Suggest email](https://dadata.ru/api/suggest/email/)
 
 ```php
 > $response = $dadata->suggest("email", "maria@");
@@ -839,9 +863,9 @@ array(5) {
 }
 ```
 
-### Other datasets
+## Other datasets
 
-[Tax office](https://dadata.ru/api/suggest/fns_unit/):
+### [Tax office](https://dadata.ru/api/suggest/fns_unit/)
 
 ```php
 > $response = $dadata->findById("fns_unit", "5257");
@@ -870,7 +894,7 @@ array(1) {
 
 ```
 
-[Regional court](https://dadata.ru/api/suggest/region_court/):
+### [Regional court](https://dadata.ru/api/suggest/region_court/)
 
 ```php
 > $response = $dadata->suggest("region_court", "таганско");
@@ -898,7 +922,7 @@ array(5) {
 }
 ```
 
-[Metro station](https://dadata.ru/api/suggest/metro/):
+### [Metro station](https://dadata.ru/api/suggest/metro/)
 
 ```php
 > $response = $dadata->suggest("metro", "алекс");
@@ -926,6 +950,8 @@ array(4) {
 }
 ```
 
+Constrain by city (Saint Petersburg):
+
 ```php
 > $filters = [[ "city" => "Санкт-Петербург" ]];
 > $response = $dadata->suggest("metro", "алекс", 5, ["filters" => $filters]);
@@ -946,7 +972,7 @@ array(2) {
 }
 ```
 
-[Car brand](https://dadata.ru/api/suggest/car_brand/):
+### [Car brand](https://dadata.ru/api/suggest/car_brand/)
 
 ```php
 > $response = $dadata->suggest("car_brand", "фо");
@@ -973,7 +999,7 @@ array(3) {
 }
 ```
 
-[Currency](https://dadata.ru/api/suggest/currency/):
+### [Currency](https://dadata.ru/api/suggest/currency/)
 
 ```php
 > $response = $dadata->suggest("currency", "руб");
@@ -994,7 +1020,7 @@ array(2) {
 }
 ```
 
-[OKVED 2](https://dadata.ru/api/suggest/okved2/):
+### [OKVED 2](https://dadata.ru/api/suggest/okved2/)
 
 ```php
 > $response = $dadata->suggest("okved2", "космических");
@@ -1022,7 +1048,7 @@ array(5) {
 }
 ```
 
-[OKPD 2](https://dadata.ru/api/suggest/okpd2/):
+### [OKPD 2](https://dadata.ru/api/suggest/okpd2/)
 
 ```php
 > $response = $dadata->suggest("okpd2", "калоши");

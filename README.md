@@ -14,6 +14,11 @@ Thin PHP wrapper over Dadata API.
 composer require hflabs/dadata
 ```
 
+Requirements:
+
+- PHP 5.6+
+- Guzzle 6
+
 ## Usage
 
 Create API client instance:

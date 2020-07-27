@@ -16,8 +16,8 @@ composer require hflabs/dadata
 
 Requirements:
 
-- PHP 5.6+
-- Guzzle 6
+-   PHP 5.6+
+-   Guzzle 6
 
 ## Usage
 
@@ -290,7 +290,9 @@ Find by KLADR ID:
 > $response = $dadata->findById("address", "77000000000268400");
 ```
 
-### [Suggest postal office](https://dadata.ru/api/suggest/postal_unit/)
+### [Find postal office](https://dadata.ru/api/suggest/postal_unit/)
+
+Suggest postal office by address or code:
 
 ```php
 > $response = $dadata->suggest("postal_unit", "дежнева 2а");
@@ -310,7 +312,7 @@ array(1) {
 }
 ```
 
-### [Find postal office by code](https://dadata.ru/api/suggest/postal_unit/)
+Find postal office by code:
 
 ```php
 > $response = $dadata->findById("postal_unit", "127642");
@@ -330,7 +332,7 @@ array(1) {
 }
 ```
 
-### [Find nearest postal office](https://dadata.ru/api/suggest/postal_unit/)
+Find nearest postal office:
 
 ```php
 > $response = $dadata->geolocate("postal_unit", 55.878, 37.653, 1000);
@@ -1061,6 +1063,70 @@ array(1) {
     ...
   }
 }
+```
+
+## Profile API
+
+Balance:
+
+```php
+> $response = $dadata->getBalance();
+> var_dump($response);
+float(8238.20)
+```
+
+Usage stats:
+
+```php
+> $response = $dadata->getDailyStats();
+> var_dump($response);
+array(2) {
+  ["date"]=>
+  string(10) "2020-07-27"
+  ["services"]=>
+  array(3) {
+    ["merging"]=>
+    int(0)
+    ["suggestions"]=>
+    int(45521)
+    ["clean"]=>
+    int(1200)
+  }
+}
+
+```
+
+Dataset versions:
+
+```php
+> $response = $dadata->getVersions();
+> var_dump($response);
+array(3) {
+  ["dadata"]=>
+  array(1) {
+    ["version"]=>
+    string(26) "stable (9048:bf33b2acc8ba)"
+  }
+  ["suggestions"]=>
+  array(2) {
+    ["version"]=>
+    string(15) "20.5 (b55eb7c4)"
+    ["resources"]=>
+    array(4) {
+      ...
+    }
+  }
+  ["factor"]=>
+  array(2) {
+    ["version"]=>
+    string(16) "20.06 (eb70078e)"
+    ["resources"]=>
+    array(8) {
+      ...
+    }
+  }
+}
+
 ```
 
 ## Development setup

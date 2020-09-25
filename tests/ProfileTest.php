@@ -17,14 +17,14 @@ final class ProfileTest extends BaseTest
     public function testToken()
     {
         $api = new ProfileClient("123", "456");
-        $headers = $api->client->getConfig("headers");
+        $headers = $api->headers;
         $this->assertEquals($headers["Authorization"], "Token 123");
     }
 
     public function testSecret()
     {
         $api = new ProfileClient("123", "456");
-        $headers = $api->client->getConfig("headers");
+        $headers = $api->headers;
         $this->assertEquals($headers["X-Secret"], "456");
     }
 

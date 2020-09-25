@@ -6,19 +6,21 @@ abstract class ClientBase
 {
     public $client;
 
+    public $headers;
+
     public function __construct($baseUrl, $token, $secret = null)
     {
-        $headers = [
+        $this->headers = [
             "Content-Type" => "application/json",
             "Accept" => "application/json",
             "Authorization" => "Token " . $token,
         ];
         if ($secret) {
-            $headers["X-Secret"] = $secret;
+            $this->headers["X-Secret"] = $secret;
         }
         $this->client = new \GuzzleHttp\Client([
             "base_uri" => $baseUrl,
-            "headers" => $headers,
+            "headers" => $this->headers,
             "timeout" => Settings::TIMEOUT_SEC
         ]);
     }

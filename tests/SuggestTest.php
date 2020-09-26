@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 
 final class SuggestTest extends BaseTest
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->api = new SuggestClient("token");

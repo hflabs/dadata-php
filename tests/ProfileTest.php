@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 final class ProfileTest extends BaseTest
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->api = new ProfileClient("token", "secret");

@@ -15,7 +15,7 @@ abstract class BaseTest extends \PHPUnit\Framework\TestCase
     protected $history;
     protected $handler;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mock = new MockHandler();
         $this->handler = HandlerStack::create($this->mock);

@@ -17,7 +17,7 @@ composer require hflabs/dadata
 Requirements:
 
 -   PHP 5.6+
--   Guzzle 6
+-   Guzzle 6 or 7
 
 ## Usage
 

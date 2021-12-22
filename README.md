@@ -29,6 +29,15 @@ Create API client instance:
 > $dadata = new \Dadata\DadataClient($token, $secret);
 ```
 
+Create API client instance with proxy:
+
+```php
+> $token = "Replace with Dadata API key";
+> $secret = "Replace with Dadata secret key";
+> $proxy = "http://proxy-host/";
+> $dadata = new \Dadata\DadataClient($token, $secret, $proxy);
+```
+
 Then call API methods as specified below.
 
 ## Postal Address

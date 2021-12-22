@@ -6,7 +6,7 @@ abstract class ClientBase
 {
     public $client;
 
-    public function __construct($baseUrl, $token, $secret = null)
+    public function __construct($baseUrl, $token, $secret = null, $proxy = '')
     {
         $headers = [
             "Content-Type" => "application/json",
@@ -16,11 +16,15 @@ abstract class ClientBase
         if ($secret) {
             $headers["X-Secret"] = $secret;
         }
-        $this->client = new \GuzzleHttp\Client([
+        $options = [
             "base_uri" => $baseUrl,
             "headers" => $headers,
             "timeout" => Settings::TIMEOUT_SEC
-        ]);
+        ];
+        if ($proxy) {
+            $options['proxy'] = $proxy;
+        }
+        $this->client = new \GuzzleHttp\Client($options);
     }
 
     protected function get($url, $query = [])

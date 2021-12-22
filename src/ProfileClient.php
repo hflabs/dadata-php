@@ -8,9 +8,9 @@ class ProfileClient extends ClientBase
 {
     const BASE_URL = "https://dadata.ru/api/v2/";
 
-    public function __construct($token, $secret)
+    public function __construct($token, $secret, $proxy = '')
     {
-        parent::__construct(self::BASE_URL, $token, $secret);
+        parent::__construct(self::BASE_URL, $token, $secret, $proxy = '');
     }
 
     public function getBalance()

@@ -12,7 +12,7 @@ class DadataClient
     {
         $this->cleaner = new CleanClient($token, $secret);
         $this->profile = new ProfileClient($token, $secret);
-        $this->suggestions = new SuggestClient($token);
+        $this->suggestions = new SuggestClient($token, $secret);
     }
 
     public function clean($name, $value)

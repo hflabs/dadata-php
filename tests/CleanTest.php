@@ -41,7 +41,9 @@ final class CleanTest extends BaseTest
 
     public function testCleanRequest()
     {
-        $this->mockResponse([]);
+        $this->mockResponse([
+            [ "source" => "москва"]
+        ]);
         $this->api->clean("address", "москва");
         $expected = ["москва"];
         $actual = $this->getLastRequest();

@@ -1,3 +1,9 @@
+# 22.3.0 (2022-03-23)
+
+### Features
+
+-   Optional secret key in `SuggestClient`
+
 # 20.12.0 (2020-12-24)
 
 ### Features

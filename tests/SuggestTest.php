@@ -36,7 +36,7 @@ final class SuggestTest extends BaseTest
 
     public function testFindAffiliatedRequest()
     {
-        $this->mockResponse([]);
+        $this->mockResponse([ "suggestions" => [] ]);
         $this->api->findAffiliated("7736207543", 5);
         $expected = ["query" => "7736207543", "count" => 5];
         $actual = $this->getLastRequest();
@@ -69,7 +69,7 @@ final class SuggestTest extends BaseTest
 
     public function testFindByIdRequest()
     {
-        $this->mockResponse([]);
+        $this->mockResponse([ "suggestions" => [] ]);
         $kwargs = [
             "kpp" => "773101001"
         ];
@@ -108,7 +108,7 @@ final class SuggestTest extends BaseTest
 
     public function testGeolocateRequest()
     {
-        $this->mockResponse([]);
+        $this->mockResponse([ "suggestions" => [] ]);
         $this->api->geolocate("address", 55.8782557, 37.65372, 200, 5);
         $expected = ["lat" => 55.8782557, "lon" => 37.65372, "radius_meters" => 200, "count" => 5];
         $actual = $this->getLastRequest();
@@ -166,7 +166,7 @@ final class SuggestTest extends BaseTest
 
     public function testSuggestRequest()
     {
-        $this->mockResponse([]);
+        $this->mockResponse([ "suggestions" => [] ]);
         $kwargs = [
             "to_bound" => ["value" => "city"]
         ];

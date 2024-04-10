@@ -2,6 +2,8 @@
 
 namespace Dadata;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 class CleanClient extends ClientBase
 {
     const BASE_URL = "https://cleaner.dadata.ru/api/v1/";
@@ -11,6 +13,9 @@ class CleanClient extends ClientBase
         parent::__construct(self::BASE_URL, $token, $secret);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function clean($name, $value)
     {
         $url = "clean/$name";
@@ -19,6 +24,9 @@ class CleanClient extends ClientBase
         return $response[0];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function cleanRecord($structure, $record)
     {
         $url = "clean";

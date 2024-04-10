@@ -3,6 +3,7 @@
 namespace Dadata;
 
 use DateTime;
+use GuzzleHttp\Exception\GuzzleException;
 
 class ProfileClient extends ClientBase
 {
@@ -13,6 +14,9 @@ class ProfileClient extends ClientBase
         parent::__construct(self::BASE_URL, $token, $secret);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function getBalance()
     {
         $url = "profile/balance";
@@ -20,6 +24,9 @@ class ProfileClient extends ClientBase
         return $response["balance"];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function getDailyStats($date = null)
     {
         $url = "stat/daily";
@@ -31,6 +38,9 @@ class ProfileClient extends ClientBase
         return $response;
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function getVersions()
     {
         $url = "version";

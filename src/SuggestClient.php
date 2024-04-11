@@ -2,6 +2,8 @@
 
 namespace Dadata;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 class SuggestClient extends ClientBase
 {
     const BASE_URL = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/";
@@ -11,6 +13,9 @@ class SuggestClient extends ClientBase
         parent::__construct(self::BASE_URL, $token, $secret);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function findAffiliated($query, $count = Settings::SUGGESTION_COUNT, $kwargs = [])
     {
         $url = "findAffiliated/party";
@@ -20,6 +25,9 @@ class SuggestClient extends ClientBase
         return $response["suggestions"];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function findById($name, $query, $count = Settings::SUGGESTION_COUNT, $kwargs = [])
     {
         $url = "findById/$name";
@@ -29,6 +37,9 @@ class SuggestClient extends ClientBase
         return $response["suggestions"];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function geolocate($name, $lat, $lon, $radiusMeters = 100, $count = Settings::SUGGESTION_COUNT, $kwargs = [])
     {
         $url = "geolocate/$name";
@@ -43,6 +54,9 @@ class SuggestClient extends ClientBase
         return $response["suggestions"];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function iplocate($ip, $kwargs = [])
     {
         $url = "iplocate/address";
@@ -52,6 +66,9 @@ class SuggestClient extends ClientBase
         return $response["location"];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function suggest($name, $query, $count = Settings::SUGGESTION_COUNT, $kwargs = [])
     {
         $url = "suggest/$name";

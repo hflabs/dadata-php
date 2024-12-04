@@ -1138,15 +1138,11 @@ $ ./vendor/bin/phpunit tests
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Make sure to add or update tests as appropriate.
-
-Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) for commit messages.
+This project only accepts bug fixes.
 
 ## [Changelog](CHANGELOG.md)
 
-This library uses [CalVer](https://calver.org/) with YY.MM.MICRO schema. See changelog for details specific to each release.
+This project uses [CalVer](https://calver.org/) with YY.MM.MICRO schema. See changelog for details specific to each release.
 
 ## License
 

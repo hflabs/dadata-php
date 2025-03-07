@@ -1129,6 +1129,79 @@ array(3) {
 
 ```
 
+## Request Caching
+
+To optimize API usage, you can use `CacheableDadataClient` which caches request results:
+
+```php
+// Include a PSR-16 compatible caching library
+// For example, symfony/cache
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Psr16Cache;
+use Dadata\CacheableDadataClient;
+
+// Create PSR-16 compatible cache
+$psr6Cache = new FilesystemAdapter('dadata', 0, __DIR__ . '/cache');
+$cache = new Psr16Cache($psr6Cache);
+
+// Create client with caching support
+$dadata = new CacheableDadataClient(
+    "API_KEY", 
+    "SECRET_KEY", 
+    $cache, 
+    [
+        'ttl' => 3600,      // Cache lifetime - 1 hour
+        'enabled' => true   // Enable caching
+    ]
+);
+
+// First request will perform API call
+$address = $dadata->clean("address", "мск сухонская 11");
+
+// Subsequent request with the same parameters will return data from cache
+$cachedAddress = $dadata->clean("address", "мск сухонская 11");
+
+// Temporarily disable caching
+$dadata->disableCache();
+$freshAddress = $dadata->clean("address", "мск сухонская 11");
+
+// Enable caching again
+$dadata->enableCache();
+
+// Clear cache for specific method
+$dadata->clearCache('suggest');
+
+// Get cache usage statistics
+$stats = $dadata->getCacheStats();
+```
+
+### Caching Requirements
+
+- PHP 5.6+
+- PSR-16 interface implementation (Simple Cache)
+
+### Cache Options
+
+When creating a `CacheableDadataClient` you can pass the following options:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| ttl | int | 3600 | Cache lifetime in seconds |
+| enabled | bool | true | Whether caching is enabled |
+| methods | array | all methods | Which methods to cache |
+
+```php
+// Example of configuring caching for selected methods
+$dadata = new CacheableDadataClient($token, $secret, $cache, [
+    'ttl' => 1800,   // 30 minutes
+    'methods' => [
+        'clean' => true,      // Cache clean method
+        'suggest' => true,    // Cache suggest method
+        'iplocate' => false,  // Don't cache iplocate method
+    ]
+]);
+```
+
 ## Development setup
 
 ```sh

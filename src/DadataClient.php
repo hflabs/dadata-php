@@ -6,9 +6,9 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class DadataClient
 {
-    private $cleaner;
-    private $profile;
-    private $suggestions;
+    protected $cleaner;
+    protected $profile;
+    protected $suggestions;
 
     public function __construct($token, $secret)
     {

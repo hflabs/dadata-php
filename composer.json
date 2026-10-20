@@ -2,7 +2,7 @@
     "name": "hflabs/dadata",
     "type": "library",
     "description": "Data cleansing, enrichment and suggestions via Dadata API",
-    "homepage": "https://github.com/nalgeon/dadata-php",
+    "homepage": "https://github.com/hflabs/dadata-php",
     "license": "MIT",
     "authors": [
         {

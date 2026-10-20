@@ -5,11 +5,14 @@ namespace Dadata;
 use DateTime;
 use GuzzleHttp\Client;
 
-final class ProfileTest extends BaseTest
+final class ProfileTest extends BaseTestCase
 {
-    protected function setUp()
+    /**
+     * @before
+     */
+    protected function setUpApi()
     {
-        parent::setUp();
+        $this->setUpMock();
         $this->api = new ProfileClient("token", "secret");
         $this->api->client = new Client(["handler" => $this->handler]);
     }
@@ -18,14 +21,14 @@ final class ProfileTest extends BaseTest
     {
         $api = new ProfileClient("123", "456");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["Authorization"], "Token 123");
+        $this->assertEquals("Token 123", $headers["Authorization"]);
     }
 
     public function testSecret()
     {
         $api = new ProfileClient("123", "456");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["X-Secret"], "456");
+        $this->assertEquals("456", $headers["X-Secret"]);
     }
 
     public function testGetBalance()
@@ -33,7 +36,7 @@ final class ProfileTest extends BaseTest
         $response = ["balance" => 9922.30];
         $this->mockResponse($response);
         $actual = $this->api->getBalance();
-        $this->assertEquals($actual, 9922.30);
+        $this->assertEquals(9922.30, $actual);
     }
 
     public function testGetDailyStats()
@@ -43,7 +46,7 @@ final class ProfileTest extends BaseTest
         $expected = ["date" => $todayStr, "services" => ["merging" => 0, "suggestions" => 11, "clean" => 1004]];
         $this->mockResponse($expected);
         $actual = $this->api->getDailyStats();
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testVersions()
@@ -55,6 +58,6 @@ final class ProfileTest extends BaseTest
         ];
         $this->mockResponse($expected);
         $actual = $this->api->getVersions();
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 }

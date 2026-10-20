@@ -29,6 +29,12 @@ Create API client instance:
 > $dadata = new \Dadata\DadataClient($token, $secret);
 ```
 
+Secret key is only required for cleansing and profile API. For suggestions-only usage you can omit it:
+
+```php
+> $dadata = new \Dadata\DadataClient($token);
+```
+
 Then call API methods as specified below.
 
 ## Postal Address
@@ -422,7 +428,7 @@ array(4) {
 }
 ```
 
-## Company or individual enterpreneur
+## Company or individual entrepreneur
 
 ### [Find company by INN](https://dadata.ru/api/find-party/)
 

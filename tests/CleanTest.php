@@ -4,11 +4,14 @@ namespace Dadata;
 
 use GuzzleHttp\Client;
 
-final class CleanTest extends BaseTest
+final class CleanTest extends BaseTestCase
 {
-    protected function setUp()
+    /**
+     * @before
+     */
+    protected function setUpApi()
     {
-        parent::setUp();
+        $this->setUpMock();
         $this->api = new CleanClient("token", "secret");
         $this->api->client = new Client(["handler" => $this->handler]);
     }

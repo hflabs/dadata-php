@@ -5,11 +5,14 @@ namespace Dadata;
 use DateTime;
 use GuzzleHttp\Client;
 
-final class ProfileTest extends BaseTest
+final class ProfileTest extends BaseTestCase
 {
-    protected function setUp()
+    /**
+     * @before
+     */
+    protected function setUpApi()
     {
-        parent::setUp();
+        $this->setUpMock();
         $this->api = new ProfileClient("token", "secret");
         $this->api->client = new Client(["handler" => $this->handler]);
     }

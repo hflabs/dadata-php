@@ -4,11 +4,14 @@ namespace Dadata;
 
 use GuzzleHttp\Client;
 
-final class SuggestTest extends BaseTest
+final class SuggestTest extends BaseTestCase
 {
-    protected function setUp()
+    /**
+     * @before
+     */
+    protected function setUpApi()
     {
-        parent::setUp();
+        $this->setUpMock();
         $this->api = new SuggestClient("token");
         $this->api->client = new Client(["handler" => $this->handler]);
     }

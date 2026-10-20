@@ -20,7 +20,7 @@ final class SuggestTest extends BaseTestCase
     {
         $api = new SuggestClient("123");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["Authorization"], "Token 123");
+        $this->assertEquals("Token 123", $headers["Authorization"]);
     }
 
     public function testFindAffiliated()
@@ -34,7 +34,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->findAffiliated("7736207543");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testFindAffiliatedRequest()
@@ -54,7 +54,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->findAffiliated("1234567890");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testFindById()
@@ -67,7 +67,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->findById("party", "7719402047");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testFindByIdRequest()
@@ -90,7 +90,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->findById("party", "1234567890");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testGeolocate()
@@ -106,7 +106,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->geolocate("address", 55.8782557, 37.65372);
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testGeolocateRequest()
@@ -126,7 +126,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->geolocate("address", 1, 1);
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testIplocate()
@@ -140,7 +140,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->iplocate("212.45.30.108");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testIplocateNotFound()
@@ -164,7 +164,7 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->suggest("address", "мск сухонская");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testSuggestRequest()
@@ -187,6 +187,6 @@ final class SuggestTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->suggest("address", "whatever");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 }

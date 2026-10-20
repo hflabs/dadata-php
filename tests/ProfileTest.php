@@ -21,14 +21,14 @@ final class ProfileTest extends BaseTestCase
     {
         $api = new ProfileClient("123", "456");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["Authorization"], "Token 123");
+        $this->assertEquals("Token 123", $headers["Authorization"]);
     }
 
     public function testSecret()
     {
         $api = new ProfileClient("123", "456");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["X-Secret"], "456");
+        $this->assertEquals("456", $headers["X-Secret"]);
     }
 
     public function testGetBalance()
@@ -36,7 +36,7 @@ final class ProfileTest extends BaseTestCase
         $response = ["balance" => 9922.30];
         $this->mockResponse($response);
         $actual = $this->api->getBalance();
-        $this->assertEquals($actual, 9922.30);
+        $this->assertEquals(9922.30, $actual);
     }
 
     public function testGetDailyStats()
@@ -46,7 +46,7 @@ final class ProfileTest extends BaseTestCase
         $expected = ["date" => $todayStr, "services" => ["merging" => 0, "suggestions" => 11, "clean" => 1004]];
         $this->mockResponse($expected);
         $actual = $this->api->getDailyStats();
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testVersions()
@@ -58,6 +58,6 @@ final class ProfileTest extends BaseTestCase
         ];
         $this->mockResponse($expected);
         $actual = $this->api->getVersions();
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 }

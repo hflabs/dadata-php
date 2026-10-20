@@ -20,14 +20,14 @@ final class CleanTest extends BaseTestCase
     {
         $api = new CleanClient("123", "456");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["Authorization"], "Token 123");
+        $this->assertEquals("Token 123", $headers["Authorization"]);
     }
 
     public function testSecret()
     {
         $api = new CleanClient("123", "456");
         $headers = $api->client->getConfig("headers");
-        $this->assertEquals($headers["X-Secret"], "456");
+        $this->assertEquals("456", $headers["X-Secret"]);
     }
 
     public function testClean()
@@ -39,7 +39,7 @@ final class CleanTest extends BaseTestCase
         ];
         $this->mockResponse([$expected]);
         $actual = $this->api->clean("name", "Сережа");
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testCleanRequest()
@@ -74,6 +74,6 @@ final class CleanTest extends BaseTestCase
         ];
         $this->mockResponse($response);
         $actual = $this->api->cleanRecord($structure, $record);
-        $this->assertEquals($actual, $expected);
+        $this->assertEquals($expected, $actual);
     }
 }
